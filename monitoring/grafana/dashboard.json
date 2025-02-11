@@ -1,0 +1,50 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "jetson-workshop",
+    "title": "Jetson Workshop Analytics",
+    "tags": ["workshop", "analytics"],
+    "timezone": "browser",
+    "schemaVersion": 16,
+    "version": 0,
+    "refresh": "5s",
+    "panels": [
+      {
+        "id": 1,
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "type": "graph",
+        "title": "Workshop Participants",
+        "datasource": "Prometheus",
+        "targets": [
+          {
+            "expr": "workshop_participants_total",
+            "legendFormat": "Total Participants"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "type": "graph",
+        "title": "Lab Completion Rate",
+        "datasource": "Prometheus",
+        "targets": [
+          {
+            "expr": "sum(workshop_lab_completions) by (lab)",
+            "legendFormat": "{{lab}}"
+          }
+        ]
+      }
+    ]
+  }
+}
