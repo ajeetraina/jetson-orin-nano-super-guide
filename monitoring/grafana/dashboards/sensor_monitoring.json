@@ -1,0 +1,65 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "BME680 Sensor Monitoring",
+    "tags": ["sensors", "bme680"],
+    "timezone": "browser",
+    "panels": [
+      {
+        "title": "Temperature",
+        "type": "gauge",
+        "gridPos": { "h": 8, "w": 6, "x": 0, "y": 0 },
+        "targets": [{
+          "expr": "bme680_temperature_celsius",
+          "legendFormat": "Temperature °C"
+        }],
+        "options": {
+          "maxValue": 50,
+          "minValue": 0,
+          "thresholds": [
+            { "color": "green", "value": null },
+            { "color": "yellow", "value": 30 },
+            { "color": "red", "value": 40 }
+          ]
+        }
+      },
+      {
+        "title": "Humidity",
+        "type": "gauge",
+        "gridPos": { "h": 8, "w": 6, "x": 6, "y": 0 },
+        "targets": [{
+          "expr": "bme680_humidity_percent",
+          "legendFormat": "Humidity %"
+        }]
+      },
+      {
+        "title": "Air Quality",
+        "type": "gauge",
+        "gridPos": { "h": 8, "w": 6, "x": 12, "y": 0 },
+        "targets": [{
+          "expr": "bme680_gas_resistance_ohms",
+          "legendFormat": "Air Quality"
+        }]
+      },
+      {
+        "title": "Environmental History",
+        "type": "graph",
+        "gridPos": { "h": 8, "w": 24, "x": 0, "y": 8 },
+        "targets": [
+          {
+            "expr": "bme680_temperature_celsius",
+            "legendFormat": "Temperature"
+          },
+          {
+            "expr": "bme680_humidity_percent",
+            "legendFormat": "Humidity"
+          },
+          {
+            "expr": "bme680_pressure_hpa",
+            "legendFormat": "Pressure"
+          }
+        ]
+      }
+    ]
+  }
+}

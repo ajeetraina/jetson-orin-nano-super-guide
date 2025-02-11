@@ -1,0 +1,46 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "AI Model Performance",
+    "tags": ["ai", "models"],
+    "timezone": "browser",
+    "panels": [
+      {
+        "title": "Model Inference Time",
+        "type": "graph",
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+        "targets": [{
+          "expr": "rate(model_inference_seconds_sum[5m]) / rate(model_inference_seconds_count[5m])",
+          "legendFormat": "{{model}}"
+        }]
+      },
+      {
+        "title": "Model Memory Usage",
+        "type": "graph",
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+        "targets": [{
+          "expr": "model_memory_usage_bytes",
+          "legendFormat": "{{model}}"
+        }]
+      },
+      {
+        "title": "Model Throughput",
+        "type": "stat",
+        "gridPos": { "h": 4, "w": 8, "x": 0, "y": 8 },
+        "targets": [{
+          "expr": "rate(model_inference_total[5m])",
+          "legendFormat": "{{model}}"
+        }]
+      },
+      {
+        "title": "Model Accuracy",
+        "type": "gauge",
+        "gridPos": { "h": 4, "w": 8, "x": 8, "y": 8 },
+        "targets": [{
+          "expr": "model_accuracy",
+          "legendFormat": "{{model}}"
+        }]
+      }
+    ]
+  }
+}

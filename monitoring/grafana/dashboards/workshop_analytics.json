@@ -1,0 +1,56 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Workshop Analytics",
+    "tags": ["workshop", "analytics"],
+    "timezone": "browser",
+    "panels": [
+      {
+        "title": "Active Participants",
+        "type": "stat",
+        "gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 },
+        "targets": [{
+          "expr": "workshop_active_participants",
+          "legendFormat": "Active Users"
+        }]
+      },
+      {
+        "title": "Lab Completion Rates",
+        "type": "gauge",
+        "gridPos": { "h": 8, "w": 8, "x": 6, "y": 0 },
+        "targets": [{
+          "expr": "sum(workshop_lab_completions) by (lab) / workshop_participants_total * 100",
+          "legendFormat": "{{lab}}"
+        }]
+      },
+      {
+        "title": "Time per Lab",
+        "type": "graph",
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+        "targets": [{
+          "expr": "avg(workshop_lab_duration_seconds) by (lab)",
+          "legendFormat": "{{lab}}"
+        }]
+      },
+      {
+        "title": "Resource Usage by Lab",
+        "type": "graph",
+        "gridPos": { "h": 8, "w": 24, "x": 0, "y": 8 },
+        "targets": [
+          {
+            "expr": "avg(workshop_lab_cpu_usage) by (lab)",
+            "legendFormat": "CPU - {{lab}}"
+          },
+          {
+            "expr": "avg(workshop_lab_memory_usage) by (lab)",
+            "legendFormat": "Memory - {{lab}}"
+          },
+          {
+            "expr": "avg(workshop_lab_gpu_usage) by (lab)",
+            "legendFormat": "GPU - {{lab}}"
+          }
+        ]
+      }
+    ]
+  }
+}
