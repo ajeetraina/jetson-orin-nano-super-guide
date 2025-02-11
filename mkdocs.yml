@@ -1,87 +1,82 @@
-site_name: Jetson Orin Nano Super Workshop
-site_description: A hands-on workshop for NVIDIA Jetson Orin Nano Super
-site_author: Ajeet Singh Raina
+site_name: Jetson Orin Nano Super Guide
+site_description: Comprehensive guide for NVIDIA Jetson Orin Nano
+site_author: Community Contributors
+
 theme:
   name: material
   features:
     - navigation.tabs
     - navigation.sections
-    - navigation.top
+    - navigation.expand
+    - navigation.indexes
+    - toc.integrate
     - search.suggest
     - search.highlight
   palette:
     - scheme: default
       primary: green
-      accent: indigo
+      accent: light green
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - scheme: slate
       primary: green
-      accent: indigo
+      accent: light green
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
 
-nav:
-  - Home: index.md
-  - Getting Started:
-    - Prerequisites: getting-started/prerequisites.md
-    - Hardware Setup: getting-started/hardware-setup.md
-    - Software Setup: getting-started/software-setup.md
-  - Labs:
-    - 'Lab 1: Basic Setup & Configuration':
-      - Overview: labs/lab1/overview.md
-      - Initial Setup: labs/lab1/setup.md
-      - Power Modes: labs/lab1/power-modes.md
-      - Verification: labs/lab1/verification.md
-    - 'Lab 2: AI Model Optimization':
-      - Overview: labs/lab2/overview.md
-      - Model Selection: labs/lab2/model-selection.md
-      - TensorRT Optimization: labs/lab2/tensorrt-optimization.md
-      - Performance Testing: labs/lab2/performance-testing.md
-    - 'Lab 3: Sensor Integration':
-      - Overview: labs/lab3/overview.md
-      - BME680 Setup: labs/lab3/bme680-setup.md
-      - Data Collection: labs/lab3/data-collection.md
-      - AI Integration: labs/lab3/ai-integration.md
-  - Resources:
-    - Troubleshooting: resources/troubleshooting.md
-    - FAQ: resources/faq.md
-    - References: resources/references.md
-
 markdown_extensions:
   - admonition
-  - codehilite
-  - footnotes
-  - meta
-  - toc:
-      permalink: true
-  - pymdownx.arithmatex
-  - pymdownx.betterem
-  - pymdownx.caret
-  - pymdownx.critic
   - pymdownx.details
-  - pymdownx.emoji
-  - pymdownx.highlight
-  - pymdownx.inlinehilite
-  - pymdownx.magiclink
-  - pymdownx.mark
-  - pymdownx.smartsymbols
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.tasklist
-  - pymdownx.tilde
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed
+  - footnotes
+  - attr_list
+  - md_in_html
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Quick Start: quick-start.md
+    - Hardware Setup: hardware-setup.md
+    - Software Setup: software-setup.md
+  - Labs:
+    - Overview: labs/index.md
+    - Getting Started Labs: labs/getting-started.md
+    - Computer Vision Labs: labs/computer-vision.md
+    - TensorRT Labs: labs/tensorrt.md
+    - Edge AI Labs: labs/edge-ai.md
+    - Performance Labs: labs/performance.md
+  - Development:
+    - Environment Setup: development/environment.md
+    - Best Practices: development/best-practices.md
+    - Troubleshooting: development/troubleshooting.md
+  - Resources:
+    - Documentation: resources/documentation.md
+    - Community: resources/community.md
+    - FAQ: resources/faq.md
+
+repo_name: ajeetraina/jetson-orin-nano-super-guide
+repo_url: https://github.com/ajeetraina/jetson-orin-nano-super-guide
+edit_uri: edit/main/docs/
 
 extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/ajeetraina/jetson-orin-nano-super-guide
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/ajeetsraina
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/r/ajeetraina/jetson-orin-nano
   analytics:
     provider: google
     property: !ENV GOOGLE_ANALYTICS_KEY
+
+copyright: Copyright &copy; 2024 Community Contributors
