@@ -1,0 +1,87 @@
+/* Custom styles for workshop */
+
+/* Code copy button */
+.md-clipboard {
+    color: var(--md-default-fg-color--lighter);
+    transition: color 250ms;
+}
+
+.md-clipboard:hover {
+    color: var(--md-accent-fg-color);
+}
+
+/* Version selector */
+.md-version-select {
+    padding: .6rem;
+    border: 1px solid var(--md-default-fg-color--lighter);
+    border-radius: .1rem;
+    background-color: var(--md-default-bg-color);
+    color: var(--md-default-fg-color);
+    font-size: .64rem;
+}
+
+/* Search highlighting */
+mark {
+    background-color: var(--md-accent-fg-color--transparent);
+    color: inherit;
+}
+
+/* Lab cards */
+.lab-card {
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 1px solid var(--md-default-fg-color--lighter);
+    border-radius: .2rem;
+    background-color: var(--md-default-bg-color);
+}
+
+.lab-card__title {
+    margin: 0;
+    color: var(--md-accent-fg-color);
+}
+
+.lab-card__description {
+    margin: .5rem 0;
+}
+
+.lab-card__time {
+    font-size: .64rem;
+    color: var(--md-default-fg-color--light);
+}
+
+/* Progress tracker */
+.progress-tracker {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.progress-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.progress-step::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -50%;
+    width: 100%;
+    height: 2px;
+    background-color: var(--md-default-fg-color--lighter);
+}
+
+.progress-step:first-child::before {
+    display: none;
+}
+
+.progress-step--active {
+    color: var(--md-accent-fg-color);
+}
+
+.progress-step--active::before {
+    background-color: var(--md-accent-fg-color);
+}

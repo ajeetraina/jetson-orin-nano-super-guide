@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ base_url }}/stylesheets/extra.css">
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script src="{{ base_url }}/javascripts/extra.js"></script>
+{% endblock %}
+
+{% block announce %}
+  <p>
+    <span class="twemoji">
+      {% include ".icons/octicons/mark-github-16.svg" %}
+    </span>
+    <a href="https://github.com/ajeetraina/jetson-orin-nano-super-guide">
+      Check out the GitHub repository
+    </a>
+  </p>
+{% endblock %}
+
+{% block content %}
+  {% if page.url_to_print_page %}
+    <a href="{{ page.url_to_print_page }}" title="Print Site" class="md-content__button md-icon">
+      {% include ".icons/material/printer.svg" %}
+    </a>
+  {% endif %}
+  {{ super() }}
+  {% if page.meta.comments %}
+    <h2 id="__comments">{{ lang.t("meta.comments") }}</h2>
+    {% include "partials/comments.html" %}
+  {% endif %}
+{% endblock %}
+
+{% block footer %}
+  {{ super() }}
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        {% if config.copyright %}
+          <div class="md-footer-copyright__highlight">
+            {{ config.copyright }}
+          </div>
+        {% endif %}
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      {% include "partials/social.html" %}
+    </div>
+  </div>
+{% endblock %}
