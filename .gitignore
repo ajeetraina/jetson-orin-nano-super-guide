@@ -1,0 +1,12 @@
+site/
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+.venv/
+venv/
+ENV/
+.vercel
+.idea/
+.vscode/
+node_modules/
