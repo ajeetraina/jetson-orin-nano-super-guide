@@ -1,24 +1,18 @@
 # TensorRT Optimization
 
-## Setup TensorRT-LLM
+## Optimization Process
 
-### Installation
-```bash
-# Clone TensorRT-LLM
-git clone https://github.com/NVIDIA/TensorRT-LLM.git
-cd TensorRT-LLM
-
-# Install requirements
-pip install -r requirements.txt
-
-# Build TensorRT-LLM
-python scripts/build_wheel.py --cuda_version 11.4
-pip install build/tensorrt_llm*.whl
+```mermaid
+graph TD
+    A[Original Model] --> B[FP16 Conversion]
+    B --> C[INT8 Quantization]
+    C --> D[Optimization Verification]
+    D --> E[Performance Testing]
 ```
 
 ## FP16 Optimization
 
-### Basic Optimization
+### Basic FP16 Conversion
 ```python
 from tensorrt_llm.builder import Builder
 
@@ -27,99 +21,122 @@ def optimize_fp16(model_path, output_path):
     builder.fp16_mode = True
     builder.max_workspace_size = 8 * 1024 * 1024 * 1024  # 8GB
     
-    return builder.build_engine(model_path, output_path)
+    engine = builder.build_engine(
+        model_path,
+        output_path
+    )
+    return engine
 ```
 
 ### Advanced Configuration
 ```python
-from tensorrt_llm.network import Network
-
-def optimize_advanced(model_path):
-    network = Network()
-    network.enable_fp16 = True
-    network.enable_strict_types = True
+def configure_builder(builder):
+    config = builder.create_builder_config()
+    config.set_flag(trt.BuilderFlag.FP16)
     
-    # Configure layers
-    network.layer_precision = {
-        'attention': 'fp16',
-        'mlp': 'fp16',
-        'layernorm': 'fp32'  # Keep LayerNorm in FP32
-    }
+    # Set other optimizations
+    config.set_memory_pool_limit(
+        trt.MemoryPoolType.WORKSPACE, 8 * 1024 * 1024 * 1024
+    )
     
-    return network
+    return config
 ```
 
 ## INT8 Quantization
 
-### Calibration Data
+### Calibration Data Generation
 ```python
-def prepare_calibration_data():
-    # Generate or load calibration data
-    calib_data = [
-        "Sample text for calibration.",
-        "Another calibration example.",
-        # Add more calibration samples
-    ]
-    return calib_data
+def generate_calibration_data(dataset_path, num_samples=1000):
+    """Generate calibration data for INT8 quantization"""
+    import numpy as np
+    
+    # Load dataset
+    data = load_dataset(dataset_path)
+    
+    # Sample data
+    indices = np.random.choice(
+        len(data),
+        num_samples,
+        replace=False
+    )
+    
+    return [data[i] for i in indices]
 ```
 
 ### INT8 Optimization
 ```python
-def optimize_int8(model_path, calib_data):
+def optimize_int8(model_path, output_path, calibration_data):
     builder = Builder()
     builder.int8_mode = True
-    builder.int8_calibrator = Calibrator(calib_data)
+    builder.int8_calibrator = calibrator
     
-    return builder.build_engine(model_path)
+    # Set calibration data
+    calibrator.set_batch_stream(calibration_data)
+    
+    engine = builder.build_engine(
+        model_path,
+        output_path
+    )
+    return engine
 ```
 
 ## Memory Optimization
 
-### Attention Caching
-```python
-def configure_memory():
-    config = {
-        'max_batch_size': 1,
-        'max_input_len': 512,
-        'max_output_len': 128,
-        'enable_attention_caching': True,
-        'attention_cache_size': 1024
-    }
-    return config
-```
-
 ### Workspace Management
 ```python
-def optimize_workspace():
-    builder = Builder()
-    # 4GB workspace
-    builder.max_workspace_size = 4 * 1024 * 1024 * 1024
-    return builder
+def optimize_memory(builder):
+    # Set workspace size
+    builder.max_workspace_size = 4 * 1024 * 1024 * 1024  # 4GB
+    
+    # Enable attention caching
+    builder.attention_cache_size = 1024
+    
+    # Set maximum batch size
+    builder.max_batch_size = 1
 ```
 
-## Complete Optimization Pipeline
-
-```mermaid
-graph TD
-    A[Load Model] --> B[FP16 Conversion]
-    B --> C[INT8 Quantization]
-    C --> D[Memory Optimization]
-    D --> E[Build Engine]
-    E --> F[Save Engine]
-```
-
-## Performance Monitoring
-
-### Memory Usage
+### Layer Optimization
 ```python
-def monitor_memory():
-    import torch
-    print(f"GPU Memory: {torch.cuda.memory_allocated()/1e9:.2f}GB")
+def optimize_layers(network):
+    # Fuse layers where possible
+    network.enable_layer_fusion()
+    
+    # Optimize tensor layouts
+    network.optimize_tensor_layouts()
 ```
 
-### Temperature Check
-```bash
-tegrastats --interval 1000
+## Optimization Verification
+
+### Basic Testing
+```python
+def verify_optimization(engine_path):
+    # Load engine
+    with open(engine_path, 'rb') as f:
+        engine_str = f.read()
+    
+    # Create context
+    context = runtime.deserialize_cuda_engine(engine_str)
+    
+    # Run inference
+    inputs = prepare_input("Test input")
+    outputs = run_inference(context, inputs)
+    
+    return outputs
+```
+
+### Performance Comparison
+```python
+def compare_performance(original_model, optimized_model):
+    results = {
+        'original': benchmark_model(original_model),
+        'optimized': benchmark_model(optimized_model)
+    }
+    
+    print("Performance Comparison:")
+    for model, metrics in results.items():
+        print(f"{model}:")
+        print(f"  Latency: {metrics['latency']:.2f}ms")
+        print(f"  Memory: {metrics['memory']:.2f}GB")
 ```
 
 ## Next Steps

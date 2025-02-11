@@ -3,91 +3,93 @@
 ## Available Models
 
 ### Large Language Models (LLMs)
-
 ```mermaid
-graph TB
-    A[LLaMA Models] --> B[LLaMA-3.1 8B]
-    A --> C[LLaMA 3.2 3B]
-    D[Other Models] --> E[Qwen2.5 7B]
-    D --> F[Gemma2 2B]
+graph LR
+    A[Llama-3.1 8B] --> B[1.37x speedup]
+    C[Llama 3.2 3B] --> D[1.55x speedup]
+    E[Qwen2.5 7B] --> F[1.53x speedup]
+    G[Gemma2 2B] --> H[1.63x speedup]
 ```
 
 ### Vision Language Models (VLMs)
+- VILA 1.5 3B: 1.51x improvement
+- InternVL2.5 4B: 2.04x improvement
+- PaliGemma2 3B: 1.58x improvement
 
-| Model | Parameters | Input | Memory |
-|-------|------------|-------|--------|
-| VILA 1.5 3B | 3B | Image+Text | 4GB |
-| LLAVA 1.6 7B | 7B | Image+Text | 7GB |
-| SmoLVLM-2B | 2B | Image+Text | 3GB |
+## Selection Criteria
 
-## Model Requirements
-
-### Memory Considerations
+### Memory Constraints
 ```python
-def estimate_memory(model_size_b, precision='fp16'):
-    base_memory = model_size_b * (2 if precision == 'fp16' else 1)
-    overhead = base_memory * 0.2  # 20% overhead
-    return base_memory + overhead
+def check_memory_requirements(model_size_b):
+    """Check if model fits in memory"""
+    memory_gb = model_size_b * 4  # Approximate memory usage
+    available_memory = 8  # Jetson Orin Nano Super has 8GB
+    
+    return memory_gb <= available_memory * 0.8  # Keep 20% buffer
 ```
 
-### Compute Requirements
+### Performance Requirements
+- Inference time < 100ms
+- Memory usage < 6GB
+- Batch size support
 
-| Model Size | Min Power Mode | Recommended Mode |
-|------------|---------------|------------------|
-| < 3B       | 7W            | 15W             |
-| 3B - 7B    | 15W           | 25W             |
-| > 7B       | 25W           | 25W             |
+## Model Downloads
 
-## Downloading Models
-
-### Using Hugging Face
+### HuggingFace Models
 ```bash
-# Install transformers
-pip install transformers
+# Download Llama 3.2 3B
+python3 scripts/download.py \
+    --model-name llama-3.2-3b \
+    --output-dir models/
 
-# Download model
-python -c "
- from transformers import AutoModel
- model = AutoModel.from_pretrained('meta-llama/Llama-3.2-3B')
- model.save_pretrained('./models/llama-3b')
-"
+# Download Gemma 2B
+python3 scripts/download.py \
+    --model-name gemma-2b \
+    --output-dir models/
 ```
 
-### Direct Download
-```bash
-# Create models directory
-mkdir -p models && cd models
-
-# Download model files
-wget https://huggingface.co/meta-llama/Llama-3.2-3B/resolve/main/model.safetensors
+### Custom Model Format
+```python
+def convert_to_tensorrt(model_path):
+    """Convert HuggingFace model to TensorRT format"""
+    import torch
+    from transformers import AutoModel
+    
+    # Load model
+    model = AutoModel.from_pretrained(model_path)
+    
+    # Export to ONNX
+    torch.onnx.export(model, ...)
+    
+    # Convert to TensorRT
+    # Implementation details
 ```
 
 ## Model Verification
 
-### Check Model Files
-```bash
-# List model files
-ls -lh models/llama-3b/
+### Basic Testing
+```python
+from transformers import pipeline
 
-# Verify checksums
-sha256sum models/llama-3b/* > checksums.txt
+def test_model(model_name):
+    pipe = pipeline("text-generation", model=model_name)
+    result = pipe("Hello, how are you?", max_length=50)
+    print(result)
 ```
 
-### Basic Inference Test
+### Memory Usage Check
 ```python
-from transformers import AutoModelForCausalLM, AutoTokenizer
+import psutil
+import torch
 
-def test_model(model_path):
-    # Load model and tokenizer
-    model = AutoModelForCausalLM.from_pretrained(model_path)
-    tokenizer = AutoTokenizer.from_pretrained(model_path)
+def check_memory_usage(model):
+    torch.cuda.reset_peak_memory_stats()
     
-    # Test inference
-    input_text = "Hello, world!"
-    inputs = tokenizer(input_text, return_tensors="pt")
-    outputs = model.generate(**inputs, max_length=50)
+    # Run inference
+    output = model("Test input")
     
-    return tokenizer.decode(outputs[0])
+    max_memory = torch.cuda.max_memory_allocated()
+    print(f"Peak memory usage: {max_memory / 1e9:.2f} GB")
 ```
 
 ## Next Steps
