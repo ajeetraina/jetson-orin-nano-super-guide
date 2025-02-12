@@ -1,18 +1,18 @@
 {
-    "buildCommand": "pip install -r requirements.txt && mkdocs build",
-    "outputDirectory": "site",
-    "installCommand": "pip install -r requirements.txt",
-    "framework": null,
-    "builds": [
-        {
-            "src": "mkdocs.yml",
-            "use": "@vercel/static-build"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/site/$1"
-        }
-    ]
+  "buildCommand": "pip install -r requirements.txt && mkdocs build",
+  "installCommand": "pip install -r requirements.txt",
+  "outputDirectory": "site",
+  "framework": null,
+  "builds": [
+    {
+      "src": "site/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
 }
