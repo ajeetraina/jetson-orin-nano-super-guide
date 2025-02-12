@@ -2,17 +2,5 @@
   "buildCommand": "pip install -r requirements.txt && mkdocs build",
   "installCommand": "pip install -r requirements.txt",
   "outputDirectory": "site",
-  "framework": null,
-  "builds": [
-    {
-      "src": "site/**/*",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ]
+  "framework": null
 }
