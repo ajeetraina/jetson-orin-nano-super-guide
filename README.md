@@ -137,7 +137,7 @@ graph LR
 ## 🤝 Support
 - Forums: [NVIDIA Developer Forums](https://forums.developer.nvidia.com/)
 - Lab: [Jetson AI Lab](https://jetson.ai)
-- Email: JetsonOrinNanoSuperSupport@NVIDIA.com
+
 
 ## 📝 Project Structure
 ```
@@ -156,8 +156,4 @@ jetson-orin-nano-super-guide/
 └── README.md
 ```
 
-Would you like me to:
-1. Add more technical details about specific features?
-2. Create additional documentation sections?
-3. Add more example code or scripts?
-4. Include additional diagrams or visualizations?
+
