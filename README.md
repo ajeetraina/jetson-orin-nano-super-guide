@@ -36,6 +36,9 @@ graph TD
 
 - Insert microSD card (gold contacts facing heatsink)
 - Connect DisplayPort to monitor
+
+> Note: The NVIDIA Jetson Orin Nano Developer Kit doesn't support HDMI, but it does have a DisplayPort output port. You can use an adapter to connect the kit to a monitor or TV that only has HDMI. 
+
 - Connect USB keyboard and mouse
 - Connect power supply (verify green LED)
 
