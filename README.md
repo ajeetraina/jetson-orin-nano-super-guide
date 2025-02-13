@@ -7,6 +7,9 @@
 
 ## 🚀 Quick Hardware Setup
 
+<img width="926" alt="image" src="https://github.com/user-attachments/assets/6568f106-c49d-4cd5-ac84-e7e1a1078446" />
+
+
 ```mermaid
 graph TD
     A[Unbox Developer Kit] --> B[Insert microSD Card]
