@@ -1,5 +1,8 @@
 # Jetson Orin Nano Super Quick Start Guide
 
+<img width="497" alt="image" src="https://github.com/user-attachments/assets/60d8f2fd-6945-4cbe-8b28-b87627dfdd23" />
+
+
 > Your comprehensive guide to getting started with NVIDIA's most affordable edge AI supercomputer
 
 ## 🚀 Quick Hardware Setup
