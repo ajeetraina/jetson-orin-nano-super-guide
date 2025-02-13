@@ -30,6 +30,10 @@ graph TD
 
 ### 1. Hardware Setup
 - Flash the SD card using Etcher on Windows, Linux or Mac system
+
+<img width="621" alt="image" src="https://github.com/user-attachments/assets/7b6d294d-6e24-43c5-bf6b-7e039cbd799d" />
+
+
 - Insert microSD card (gold contacts facing heatsink)
 - Connect DisplayPort to monitor
 - Connect USB keyboard and mouse
