@@ -129,7 +129,7 @@ graph LR
 ```
 
 ## 📚 Advanced Topics
-- [Model Optimization Guide](docs/optimization.md)
+- [Model Optimization Guide](docs/optimization.md) - WIP
 - [Performance Tuning](docs/performance.md) - WIP
 - [Computer Vision Setup](docs/vision.md) - WIP
 - [Edge Deployment](docs/deployment.md) - WIP
