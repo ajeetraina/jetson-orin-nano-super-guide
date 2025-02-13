@@ -41,6 +41,8 @@ sequenceDiagram
     S->>U: Create User Account
 ```
 
+### Note: NVIDIA Jetson Nano Orin Developer Kit can be upgraded to Jetson Orin Nano Super Developer Kit with a software update.
+
 ### 3. Enable Maximum Performance
 ```bash
 # Set MAXN power mode
