@@ -29,6 +29,7 @@ graph TD
 ## 🛠️ Initial Setup Steps
 
 ### 1. Hardware Setup
+- Flash the SD card using Etcher on Windows, Linux or Mac system
 - Insert microSD card (gold contacts facing heatsink)
 - Connect DisplayPort to monitor
 - Connect USB keyboard and mouse
