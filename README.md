@@ -130,9 +130,9 @@ graph LR
 
 ## 📚 Advanced Topics
 - [Model Optimization Guide](docs/optimization.md)
-- [Performance Tuning](docs/performance.md)
-- [Computer Vision Setup](docs/vision.md)
-- [Edge Deployment](docs/deployment.md)
+- [Performance Tuning](docs/performance.md) - WIP
+- [Computer Vision Setup](docs/vision.md) - WIP
+- [Edge Deployment](docs/deployment.md) - WIP
 
 ## 🤝 Support
 - Forums: [NVIDIA Developer Forums](https://forums.developer.nvidia.com/)
