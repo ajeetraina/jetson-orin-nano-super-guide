@@ -22,7 +22,9 @@ graph TD
 ## 📦 Kit Contents
 - Jetson Orin Nano 8GB module with heatsink
 - Reference carrier board
-- Power supply 
+- Power supply
+- Display Port
+    - [HDMI cable is not supported.Click here to buy the Display Port](https://www.amazon.com/DisplayPort-Adapter-Compatible-ThinkPad-Desktop/dp/B07ZNNRYFL)
 - Wireless NIC
 - Quick Start Guide
 
