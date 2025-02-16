@@ -35,6 +35,8 @@ graph TD
 
 <img width="621" alt="image" src="https://github.com/user-attachments/assets/7b6d294d-6e24-43c5-bf6b-7e039cbd799d" />
 
+> Ensure that you download the latest JetPack 6.2 SDK from [this link](https://developer.nvidia.com/downloads/embedded/l4t/r36_release_v4.3/jp62-orin-nano-sd-card-image.zip). Your Jetson Orin Nano Developer Kit comes with an old firmware flashed at the factory, which is NOT compatible with JetPack 6.x. Click here to download
+
 
 - Insert microSD card (gold contacts facing heatsink)
 - Connect DisplayPort to monitor
