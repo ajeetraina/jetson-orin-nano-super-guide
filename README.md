@@ -87,7 +87,7 @@ git clone https://github.com/NVIDIA/TensorRT-LLM.git
 cd TensorRT-LLM
 
 # Build and install
-python3 scripts/build_wheel.py --cuda_version 11.4
+python3 scripts/build_wheel.py --cuda_version 12.1.0
 pip3 install ./build/tensorrt_llm*.whl
 ```
 
