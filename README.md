@@ -87,9 +87,37 @@ git clone https://github.com/NVIDIA/TensorRT-LLM.git
 cd TensorRT-LLM
 
 # Build and install
-python3 scripts/build_wheel.py --cuda_version 12.1.0
+python3 scripts/build_wheel.py --cuda_version 12.6.0
 pip3 install ./build/tensorrt_llm*.whl
 ```
+
+The reason why we passed CUDA version 12.6.0. Reason - Based on your nvidia-smi output, we're using CUDA Version: 12.6
+This is running on a Jetson Orin with driver version 540.4.0.
+
+```
+nvidia-smi
+Tue Mar  4 09:42:45 2025
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 540.4.0                Driver Version: 540.4.0      CUDA Version: 12.6     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  Orin (nvgpu)                  N/A  | N/A              N/A |                  N/A |
+| N/A   N/A  N/A               N/A /  N/A | Not Supported        |     N/A          N/A |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+```
+
 
 ## 🎯 Your First AI Model
 
