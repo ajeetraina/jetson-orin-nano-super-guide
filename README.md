@@ -125,9 +125,72 @@ git clone https://github.com/NVIDIA/TensorRT-LLM.git
 cd TensorRT-LLM
 git checkout v0.12.0-jetson
 git lfs pull
+```
+
+```
 python3 scripts/build_wheel.py --clean --cuda_architectures 87 -DENABLE_MULTI_DEVICE=0 --build_type Release --benchmarks --use_ccache
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- NVTX is disabled
+-- Importing batch manager
+-- Importing executor
+-- Importing nvrtc wrapper
+-- Building PyTorch
+-- Building Google tests
+-- Building benchmarks
+-- Not building C++ micro benchmarks
+-- TensorRT-LLM version: 0.12.0
+-- Looking for a CUDA compiler
+-- Looking for a CUDA compiler - /usr/local/cuda-12.6/bin/nvcc
+-- CUDA compiler: /usr/local/cuda-12.6/bin/nvcc
+-- GPU architectures: 87
+-- The C compiler identification is GNU 11.4.0
+-- The CUDA compiler identification is NVIDIA 12.6.68
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CUDA compiler ABI info
+-- Detecting CUDA compiler ABI info - done
+-- Check for working CUDA compiler: /usr/local/cuda-12.6/bin/nvcc - skipped
+-- Detecting CUDA compile features
+-- Detecting CUDA compile features - done
+-- Found CUDAToolkit: /usr/local/cuda-12.6/include (found version "12.6.68")
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- CUDA library status:
+--     version: 12.6.68
+--     libraries: /usr/local/cuda-12.6/lib64
+--     include path: /usr/local/cuda-12.6/targets/aarch64-linux/include
+-- ========================= Importing and creating target nvinfer ==========================
+-- Looking for library nvinfer
+-- Library that was found /usr/lib/aarch64-linux-gnu/libnvinfer.so
+-- ==========================================================================================
+-- CUDAToolkit_VERSION 12.6 is greater or equal than 11.0, enable -DENABLE_BF16 flag
+-- CUDAToolkit_VERSION 12.6 is greater or equal than 11.8, enable -DENABLE_FP8 flag
+-- COMMON_HEADER_DIRS: /home/ajeetraina/TensorRT-LLM/cpp;/usr/local/cuda-12.6/include
+-- Found Python3: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter Development Development.Module Development.Embed
+-- USE_CXX11_ABI is set by python Torch to 1
+-- TORCH_CUDA_ARCH_LIST: 8.7+PTX
+-- Found Python executable at /usr/bin/python3.10
+-- Found Python libraries at /usr/lib/aarch64-linux-gnu
+...
+...
+```
+
+```
 pip install build/tensorrt_llm-*.whl
 ```
+
+
 
 
 Since I'm building on a Jetson Orin with CUDA 12.6, the script should automatically detect and use the correct CUDA installation. 
