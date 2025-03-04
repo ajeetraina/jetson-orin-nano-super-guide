@@ -90,15 +90,43 @@ sudo apt install -y python3-pip git cmake
 sudo apt install -y python3-tensorrt
 ```
 
-### TensorRT-LLM Setup
+## TensorRT-LLM Setup
+
+
+### Installing all the Prerequisites
+
+```
+sudo apt-get update
+sudo apt-get install -y python3-pip libopenblas-dev git-lfs ccache
+wget https://raw.githubusercontent.com/pytorch/pytorch/9b424aac1d70f360479dd919d6b7933b5a9181ac/.ci/docker/common/install_cusparselt.sh
+export CUDA_VERSION=12.6
+sudo -E bash ./install_cusparselt.sh
+python3 -m pip install numpy=='1.26.1'
+```
+
+## Result:
+
+```
+Defaulting to user installation because normal site-packages is not writeable
+Collecting numpy==1.26.1
+  Downloading numpy-1.26.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (14.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.2/14.2 MB 4.9 MB/s eta 0:00:00
+Installing collected packages: numpy
+  WARNING: The script f2py is installed in '/home/ajeetraina/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed numpy-1.26.1
+```
+
+## Setting up TensorRT LLM
+
 ```bash
 # Clone TensorRT-LLM
 git clone https://github.com/NVIDIA/TensorRT-LLM.git
 cd TensorRT-LLM
-
-# Build and install
-python3 scripts/build_wheel.py 
-pip3 install ./build/tensorrt_llm*.whl
+git checkout v0.12.0-jetson
+git lfs pull
+python3 scripts/build_wheel.py --clean --cuda_architectures 87 -DENABLE_MULTI_DEVICE=0 --build_type Release --benchmarks --use_ccache
+pip install build/tensorrt_llm-*.whl
 ```
 
 
