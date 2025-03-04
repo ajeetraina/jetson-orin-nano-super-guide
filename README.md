@@ -27,10 +27,19 @@ graph TD
     - [HDMI cable is not supported.Click here to buy the Display Port](https://www.amazon.com/DisplayPort-Adapter-Compatible-ThinkPad-Desktop/dp/B07ZNNRYFL)
 - Wireless NIC
 - Quick Start Guide
+- PCIE 3.0 NVMe M.2 SSD
+
+<img width="495" alt="image" src="https://github.com/user-attachments/assets/22d5f3fa-b53c-4eb5-9dd4-bb332d670dff" />
+
 
 ## 🛠️ Initial Setup Steps
 
 ### 1. Hardware Setup
+- Add NVMe SSD to the Jetson Board
+
+<img width="498" alt="image" src="https://github.com/user-attachments/assets/ed11c297-c26d-4c75-8f1a-a673d840484d" />
+
+
 - Flash the SD card using Etcher on Windows, Linux or Mac system
 
 <img width="621" alt="image" src="https://github.com/user-attachments/assets/7b6d294d-6e24-43c5-bf6b-7e039cbd799d" />
@@ -45,6 +54,7 @@ graph TD
 
 - Connect USB keyboard and mouse
 - Connect power supply (verify green LED)
+- 
 
 ### 2. First Boot Configuration
 ```mermaid
