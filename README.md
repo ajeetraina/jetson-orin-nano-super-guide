@@ -87,12 +87,13 @@ git clone https://github.com/NVIDIA/TensorRT-LLM.git
 cd TensorRT-LLM
 
 # Build and install
-python3 scripts/build_wheel.py --cuda_version 12.6.0
+python3 scripts/build_wheel.py 
 pip3 install ./build/tensorrt_llm*.whl
 ```
 
-The reason why we passed CUDA version 12.6.0. Reason - Based on your nvidia-smi output, we're using CUDA Version: 12.6
-This is running on a Jetson Orin with driver version 540.4.0.
+
+Since I'm building on a Jetson Orin with CUDA 12.6, the script should automatically detect and use the correct CUDA installation. 
+The build might take some time as TensorRT-LLM is a complex library with many components.
 
 ```
 nvidia-smi
@@ -116,6 +117,75 @@ Tue Mar  4 09:42:45 2025
 |=======================================================================================|
 |  No running processes found                                                           |
 +---------------------------------------------------------------------------------------+
+```
+
+```
+ Downloading accelerate-1.4.0-py3-none-any.whl (342 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 342.1/342.1 KB 1.9 MB/s eta 0:00:00
+Collecting build
+  Downloading build-1.2.2.post1-py3-none-any.whl (22 kB)
+Collecting colored
+  Downloading colored-2.3.0-py3-none-any.whl (18 kB)
+Collecting cuda-python
+  Downloading cuda_python-12.8.0-py3-none-any.whl (11 kB)
+Collecting diffusers>=0.27.0
+  Downloading diffusers-0.32.2-py3-none-any.whl (3.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 4.6 MB/s eta 0:00:00
+Collecting lark
+  Downloading lark-1.2.2-py3-none-any.whl (111 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 111.0/111.0 KB 14.2 MB/s eta 0:00:00
+Collecting mpi4py
+  Downloading mpi4py-4.0.3.tar.gz (466 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 466.3/466.3 KB 6.6 MB/s eta 0:00:00
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... done
+  Installing backend dependencies ... done
+  Preparing metadata (pyproject.toml) ... done
+Requirement already satisfied: numpy<2 in /usr/lib/python3/dist-packages (from -r requirements.txt (line 8)) (1.21.5)
+Collecting onnx>=1.12.0
+  Downloading onnx-1.17.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (15.9 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 15.9/15.9 MB 7.4 MB/s eta 0:00:00
+Collecting onnx_graphsurgeon>=0.5.2
+  Downloading onnx_graphsurgeon-0.5.5-py2.py3-none-any.whl (57 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 57.8/57.8 KB 7.8 MB/s eta 0:00:00
+Collecting openai
+  Downloading openai-1.65.2-py3-none-any.whl (473 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 473.2/473.2 KB 9.0 MB/s eta 0:00:00
+Collecting polygraphy
+  Downloading polygraphy-0.49.18-py2.py3-none-any.whl (354 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 354.7/354.7 KB 8.2 MB/s eta 0:00:00
+Collecting psutil
+  Downloading psutil-7.0.0-cp36-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (279 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 279.5/279.5 KB 11.7 MB/s eta 0:00:00
+Collecting pynvml>=11.5.0
+  Downloading pynvml-12.0.0-py3-none-any.whl (26 kB)
+Collecting pulp
+  Downloading PuLP-3.0.2-py3-none-any.whl (17.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 17.7/17.7 MB 9.3 MB/s eta 0:00:00
+Requirement already satisfied: pandas in /usr/lib/python3/dist-packages (from -r requirements.txt (line 16)) (1.3.5)
+Collecting h5py==3.12.1
+  Downloading h5py-3.12.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (5.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 9.8 MB/s eta 0:00:00
+Collecting StrEnum
+  Downloading StrEnum-0.4.15-py3-none-any.whl (8.9 kB)
+Collecting sentencepiece>=0.1.99
+  Downloading sentencepiece-0.2.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (1.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 10.0 MB/s eta 0:00:00
+Collecting tensorrt~=10.8.0
+  Downloading tensorrt-10.8.0.43.tar.gz (35 kB)
+  Preparing metadata (setup.py) ... done
+Collecting torch<=2.6.0,>=2.6.0a0
+  Downloading torch-2.6.0-cp310-cp310-manylinux_2_28_aarch64.whl (95.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 95.8/95.8 MB 6.2 MB/s eta 0:00:00
+Collecting torchvision
+  Downloading torchvision-0.21.0-cp310-cp310-manylinux_2_28_aarch64.whl (14.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.7/14.7 MB 8.7 MB/s eta 0:00:00
+Collecting nvidia-modelopt[torch]~=0.23.0
+  Downloading nvidia_modelopt-0.23.2-py3-none-manylinux_2_28_aarch64.whl (602 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 602.7/602.7 KB 3.8 MB/s eta 0:00:00
+Collecting nvidia-nccl-cu12
+  Downloading nvidia_nccl_cu12-2.25.1-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl (201.6 MB)
+     ━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.9/201.6 MB 3.6 MB/s eta 0:00:39
 ```
 
 
