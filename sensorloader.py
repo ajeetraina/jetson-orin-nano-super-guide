@@ -4,8 +4,8 @@ import smbus2
 import time
 
 # Set up the Neo4j driver
-uri = "neo4j+s://b08159e8.databases.neo4j.io"
-driver = GraphDatabase.driver(uri, auth=("neo4j", "_eM6spXS2fFd--LOSw3EwgP5GAODp5ido85G1koVAzc"))
+uri = "neo4j+s://bXXX8.databases.neo4j.io"
+driver = GraphDatabase.driver(uri, auth=("neo4j", "_eM6sXXXXXX85G1koVAzc"))
 
 # Set up the BME680 sensor on bus 7
 i2c_bus = smbus2.SMBus(7)
