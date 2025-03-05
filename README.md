@@ -421,6 +421,9 @@ Data inserted into Neo4j
 
 Start Neo4j Docker Extension that connects to Neo4j Aura DB and you can see graph plotted.
 
+<img width="1506" alt="image" src="https://github.com/user-attachments/assets/43668df7-1e03-4343-b7d2-e90df8ab42d8" />
+
+
 <img width="1497" alt="image" src="https://github.com/user-attachments/assets/f69e22d6-b9da-488d-a421-8126e6b12c7a" />
 
 
