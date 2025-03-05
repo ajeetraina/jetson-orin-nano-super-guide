@@ -386,6 +386,45 @@ jetson-orin-nano-super-guide/
 70: -- -- -- -- -- -- 76 --
 ```
 
+Clone the repository and run the following command:
+
+```
+python3 sensorloader.py
+```
+
+## Result:
+
+```
+Reading - Temp: 29.54°C, Humidity: 37.49%, Pressure: 913.26hPa, Gas: 51625.37 Ohms
+Data inserted into Neo4j
+Reading - Temp: 29.53°C, Humidity: 37.49%, Pressure: 913.26hPa, Gas: 51913.37 Ohms
+Data inserted into Neo4j
+Reading - Temp: 29.53°C, Humidity: 37.48%, Pressure: 913.27hPa, Gas: 51784.98 Ohms
+Data inserted into Neo4j
+Reading - Temp: 29.52°C, Humidity: 37.49%, Pressure: 913.26hPa, Gas: 52042.41 Ohms
+Data inserted into Neo4j
+Reading - Temp: 29.52°C, Humidity: 37.52%, Pressure: 913.26hPa, Gas: 51721.02 Ohms
+Data inserted into Neo4j
+Reading - Temp: 29.51°C, Humidity: 37.54%, Pressure: 913.27hPa, Gas: 52172.08 Ohms
+Data inserted into Neo4j
+Reading - Temp: 29.51°C, Humidity: 37.71%, Pressure: 913.25hPa, Gas: 51913.37 Ohms
+Data inserted into Neo4j
+Reading - Temp: 29.51°C, Humidity: 37.71%, Pressure: 913.26hPa, Gas: 52565.02 Ohms
+Data inserted into Neo4j
+Reading - Temp: 29.52°C, Humidity: 37.52%, Pressure: 913.26hPa, Gas: 52042.41 Ohms
+Data inserted into Neo4j
+Reading - Temp: 29.53°C, Humidity: 37.43%, Pressure: 913.25hPa, Gas: 52730.5 Ohms
+Data inserted into Neo4j
+Reading - Temp: 29.54°C, Humidity: 37.44%, Pressure: 913.26hPa, Gas: 52730.5 Ohms
+Data inserted into Neo4j
+```
+
+Start Neo4j Docker Extension that connects to Neo4j Aura DB and you can see graph plotted.
+
+<img width="1497" alt="image" src="https://github.com/user-attachments/assets/f69e22d6-b9da-488d-a421-8126e6b12c7a" />
+
+
+
 
 
 
