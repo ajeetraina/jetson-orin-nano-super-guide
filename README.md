@@ -1,11 +1,49 @@
 # Jetson Orin Nano Super Quick Start Guide
 
-<img width="497" alt="image" src="https://github.com/user-attachments/assets/60d8f2fd-6945-4cbe-8b28-b87627dfdd23" />
+The NVIDIA Jetson Orin Nano Super Developer Kit is a compact, yet powerful computer that redefines generative AI for small edge devices. It delivers up to 67 TOPS of AI performance—a 1.7X improvement over its predecessor—to seamlessly run a wide variety of generative AI models, like vision transformers, large language models, vision-language models, and more
+
+<img width="595" alt="image" src="https://github.com/user-attachments/assets/0852fae7-f268-4bc8-b252-6fa4b640b2b9" />
 
 
 > Your comprehensive guide to getting started with NVIDIA's most affordable edge AI supercomputer
 
-## 🚀 Quick Hardware Setup
+## 🚀 Quick Unboxing
+
+<img width="623" alt="image" src="https://github.com/user-attachments/assets/813eab92-6f4e-4480-8b93-a1168816f567" />
+
+
+
+## 📦 Kit Contents
+- Jetson Orin Nano 8GB module with heatsink
+- Reference carrier board
+- Power supply
+- Display Port
+    - [HDMI cable is not supported.Click here to buy the Display Port](https://www.amazon.com/DisplayPort-Adapter-Compatible-ThinkPad-Desktop/dp/B07ZNNRYFL)
+- Wireless NIC
+- Quick Start Guide
+
+
+## Using NVMe SSD
+
+When running AI workloads that involve frequent read/write operations, an NVMe SSD offers higher endurance ratings than SD card, extending the lifespan of your storage solution. Hence, I ordered a Crucial NVMe SSD from Amazon and inserted it into the Jetson Orin board.
+
+
+<img width="622" alt="image" src="https://github.com/user-attachments/assets/34d26cab-d651-4156-a786-02da9b2e2542" />
+
+
+
+
+<img width="495" alt="image" src="https://github.com/user-attachments/assets/22d5f3fa-b53c-4eb5-9dd4-bb332d670dff" />
+
+
+## 🛠️ Initial Setup Steps
+
+### 1. Hardware Setup
+- Add NVMe SSD to the Jetson Board
+
+<img width="498" alt="image" src="https://github.com/user-attachments/assets/ed11c297-c26d-4c75-8f1a-a673d840484d" />
+
+## Using microSD(Optional)
 
 <img width="926" alt="image" src="https://github.com/user-attachments/assets/6568f106-c49d-4cd5-ac84-e7e1a1078446" />
 
@@ -18,26 +56,6 @@ graph TD
     D --> E[Connect Power]
     E --> F[First Boot]
 ```
-
-## 📦 Kit Contents
-- Jetson Orin Nano 8GB module with heatsink
-- Reference carrier board
-- Power supply
-- Display Port
-    - [HDMI cable is not supported.Click here to buy the Display Port](https://www.amazon.com/DisplayPort-Adapter-Compatible-ThinkPad-Desktop/dp/B07ZNNRYFL)
-- Wireless NIC
-- Quick Start Guide
-- PCIE 3.0 NVMe M.2 SSD
-
-<img width="495" alt="image" src="https://github.com/user-attachments/assets/22d5f3fa-b53c-4eb5-9dd4-bb332d670dff" />
-
-
-## 🛠️ Initial Setup Steps
-
-### 1. Hardware Setup
-- Add NVMe SSD to the Jetson Board
-
-<img width="498" alt="image" src="https://github.com/user-attachments/assets/ed11c297-c26d-4c75-8f1a-a673d840484d" />
 
 
 - Flash the SD card using Etcher on Windows, Linux or Mac system
@@ -70,6 +88,58 @@ sequenceDiagram
 ```
 
 ### Note: NVIDIA Jetson Nano Orin Developer Kit can be upgraded to Jetson Orin Nano Super Developer Kit with a software update.
+
+
+## Flashing OS using SDK Manager and NVMe SSD
+
+Follow the below steps to put Jetson Orin Nano Into Recovery Mode
+
+- Step 1: Power Off the Jetson Orin Nano
+
+  - If the board is currently running, safely shut it down using sudo shutdown -h now
+  - Disconnect the power supply completely
+
+- Step 2: Locate the Recovery and Ground Pins
+
+  - Find the 40-pin GPIO header on your Jetson Orin Nano
+  - Identify pin 9 (GND) and pin 10 (FC REC) on the header
+  - These pins are typically located in the inner rows of the header
+
+- Step 3: Insert a Jumper Between the Pins
+
+
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/0ff65708-dfcc-4d14-ac7f-9b8fb56032c2" />
+
+    - Place a jumper cap or wire to connect pin 9 (GND) to pin 10 (FC REC)
+    - Ensure the connection is secure but not forcing the pins
+
+- Step 4: Connect USB and Power
+  
+    - Connect the USB Type-C cable from your host PC to the USB-C port on the Jetson
+    - Reconnect the power supply to the Jetson Orin Nano
+
+- Step 5: Verify Recovery Mode
+  
+    - On your host PC, open a terminal and run: lsusb
+    - You should see a device entry containing "NVIDIA Corp. APX" in the list
+    - This confirms the Jetson Orin Nano is in Recovery Mode
+
+- Step 6: Proceed with SDK Manager
+
+    - Launch NVIDIA SDK Manager on your host PC
+   - It should now detect your Jetson Orin Nano in Recovery Mode
+   - You can now flash JetPack or perform other recovery operations
+
+- Step 7: After Flashing (Important!)
+
+   - Once flashing is complete, power off the Jetson completely
+   - Remove the jumper between pins 9 and 10
+   - Power on the board normally
+
+
+
+<img width="609" alt="image" src="https://github.com/user-attachments/assets/82aafd15-6777-4936-8e34-a744b5519509" />
+
 
 ### 3. Enable Maximum Performance
 ```bash
