@@ -1,0 +1,7 @@
+services:
+  sensor-monitor:
+    build: .
+    privileged: true
+    devices:
+      - /dev/i2c-7:/dev/i2c-7
+    restart: unless-stopped
