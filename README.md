@@ -497,7 +497,13 @@ Start Neo4j Docker Extension that connects to Neo4j Aura DB and you can see grap
 <img width="1497" alt="image" src="https://github.com/user-attachments/assets/f69e22d6-b9da-488d-a421-8126e6b12c7a" />
 
 
+## Using Docker
 
+I have included a Docker Compose file that fetches the sensor values from BME680 and send it to Neo4j database
+
+```
+docker compose up -d --build
+```
 
 
 
